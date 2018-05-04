@@ -46,6 +46,7 @@ export MPI_NAME=openmpi
 export MPI_BIN=$MPI_HOME/bin
 export MPI_INCLUDE=$MPI_HOME/include
 export MPI_LIB=$MPI_HOME/lib:$MPI_HOME/lib64
+export PATH=$MPI_BIN:$PATH
 
 # ======== CUDA ========
 if [ ! -z "$CUDA" ]; then
@@ -57,6 +58,7 @@ if [ -e $CUDA_PATH ]; then
 	export CUDA=$CUDA_PATH
 	export CUDA_PATH=$CUDA_PATH
 	export CUDA_HOME=$CUDA
+	export PATH=$CUDA/bin:$PATH
 fi
 
 CUDADRV=$CUDA
