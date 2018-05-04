@@ -112,7 +112,15 @@ mkdir -p $PREFIX/bin
 mkdir -p $PREFIX/include
 mkdir -p $PREFIX/lib
 
-make clean all install
+make all || exit 1
+
+echo "### GDRCopy, LibGDSync and LibMP correctly built ###"
+echo "# Libraries in $PREFIX/lib"
+echo "# Headers in $PREFIX/include"
+echo "# Binaries in $PREFIX/bin"
+echo "#####################################################"
+
+#make clean all install
 
 
 # ======== Set LD_LIBRARY_PATH ========
