@@ -28,8 +28,8 @@
 
 # ======== PATH SETUP ========
 export PREFIX="/path/to/gdasync"
-MPI_PATH="/usr/mpi/gcc/openmpi-1.10.5a1"
-CUDA_PATH="/usr/local/cuda-9.0"
+MPI_PATH="/path/to/mpi"
+CUDA_PATH="/path/to/cuda"
 
 LIBGDSYNC_PATH="$PREFIX/libgdsync"
 LIBMP_PATH="$PREFIX/libmp"
@@ -46,9 +46,6 @@ export MPI_NAME=openmpi
 export MPI_BIN=$MPI_HOME/bin
 export MPI_INCLUDE=$MPI_HOME/include
 export MPI_LIB=$MPI_HOME/lib:$MPI_HOME/lib64
-#export PATH=$MPI_BIN:$PATH
-#export LD_LIBRARY_PATH=$MPI_LIB:${LD_LIBRARY_PATH}
-
 
 # ======== CUDA ========
 if [ ! -z "$CUDA" ]; then
@@ -101,6 +98,14 @@ export GDSYNC GDSYNC_CPPFLAGS GDSYNC_LDFLAGS
 mkdir -p $PREFIX/bin
 mkdir -p $PREFIX/include
 mkdir -p $PREFIX/lib
+
+# Configuration cleanup
+rm -rf $PREFIX/libgdsync/build
+rm -rf $PREFIX/libmp/build
+# Libraries cleanup
+rm -rf $PREFIX/lib/*
+# Binaries cleanup
+rm -rf $PREFIX/bin/*
 
 make all || exit 1
 
