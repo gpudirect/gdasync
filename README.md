@@ -28,9 +28,9 @@ Then type `./build.sh`
 
 ### Results
 
-Libraries are built in `$PREFIX/lib`
-Headers are built in `$PREFIX/include`
-Binaries (examples and benchmarks) are built in `$PREFIX/bin`
+Libraries are built in `$PREFIX/lib` <br>
+Headers are built in `$PREFIX/include` <br>
+Binaries (examples and benchmarks) are built in `$PREFIX/bin` <br>
 
 ## Acknowledging GPUDirect Async
 
