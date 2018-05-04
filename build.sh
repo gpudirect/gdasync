@@ -57,13 +57,6 @@ if [ -e $CUDA_PATH ]; then
 	export CUDA=$CUDA_PATH
 	export CUDA_PATH=$CUDA_PATH
 	export CUDA_HOME=$CUDA
-	export CUDA_ROOT=$CUDA
-	export CUDA_BIN=$CUDA/bin
-	export CUDA_LIB=$CUDA/lib64
-	export CUDA_LIB32=$CUDA/lib
-	export CUDA_INC_PATH=$CUDA/include:$CUDA/include/CL
-#	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_LIB:$CUDA_LIB32:$CUDA/jre/lib:$CUDA/extras/CUPTI/lib64:$CUDA/extras/CUPTI/lib:/usr/lib64
-#	export PATH=$CUDA_BIN:$PATH
 fi
 
 CUDADRV=$CUDA
@@ -79,17 +72,10 @@ if [ ! -z "$CUDADRV" ]; then
 [ -d $CUDADRVINC ] && CU_CPPFLAGS="-I$CUDADRVINC $CU_CPPFLAGS"
 fi
 
-if [ ! -z $"CUDA_INC_PATH" ]; then
-CU_CPPFLAGS="$CU_CPPFLAGS -I$CUDA_INC_PATH"
-fi
-if [ ! -z "$CUDA_LIB" ]; then
-CU_LDFLAGS="$CU_LDFLAGS -L$CUDA_LIB"
-fi
 CU_LDFLAGS="$CU_LDFLAGS -L/usr/lib64"
 
 export CUDADRV
 export CU_CPPFLAGS CU_LDFLAGS
-export GDSYNC GDSYNC_CPPFLAGS GDSYNC_LDFLAGS
 
 [[ -z $PREFIX ]] 	&& { echo "ERROR: PREFIX env var empy";		exit 1; }
 [[ -z $MPI_HOME ]] 	&& { echo "ERROR: MPI_HOME env var empy";	exit 1; }
@@ -116,9 +102,8 @@ echo "# Libraries in $PREFIX/lib"
 echo "# Headers in $PREFIX/include"
 echo "# Binaries in $PREFIX/bin"
 echo "#####################################################"
-
-#make clean all install
-
+echo ""
+echo ""
 
 # ======== Set LD_LIBRARY_PATH ========
 #export LD_LIBRARY_PATH=$PREFIX/lib:${LD_LIBRARY_PATH}
