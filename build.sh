@@ -90,16 +90,6 @@ CU_LDFLAGS="$CU_LDFLAGS -L$CUDA_LIB"
 fi
 CU_LDFLAGS="$CU_LDFLAGS -L/usr/lib64"
 
-# ======== LibGDSync ========
-if [ ! -d $LIBGDSYNC_PATH/lib ]; then
-	echo "ERROR LibGDSync: $LIBGDSYNC_PATH does not exist"
-	break
-fi
-GDSYNC_LDFLAGS="-L$LIBGDSYNC_PATH/lib"
-GDSYNC_CPPFLAGS="-I$LIBGDSYNC_PATH/include"
-GDSYNCLIB=$LIBGDSYNC_PATH/lib
-echo "INFO: installing/picking peersync stuff from $LIBGDSYNC_PATH"
-
 export CUDADRV
 export CU_CPPFLAGS CU_LDFLAGS
 export GDSYNC GDSYNC_CPPFLAGS GDSYNC_LDFLAGS
@@ -114,6 +104,8 @@ mkdir -p $PREFIX/lib
 
 make all || exit 1
 
+echo ""
+echo ""
 echo "### GDRCopy, LibGDSync and LibMP correctly built ###"
 echo "# Libraries in $PREFIX/lib"
 echo "# Headers in $PREFIX/include"
