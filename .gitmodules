@@ -13,3 +13,12 @@
 [submodule "Apps/2dstencil"]
 	path = Apps/2dstencil
 	url = https://github.com/e-ago/2dstencil-async.git
+[submodule "Apps/comd"]
+	path = Apps/comd
+	url = https://github.com/e-ago/CoMD-CUDA-Async.git
+[submodule "Apps/lulesh2"]
+	path = Apps/lulesh2
+	url = https://github.com/e-ago/lulesh2-cuda-async.git
+[submodule "Apps/jacobi"]
+	path = Apps/jacobi
+	url = https://github.com/spotluri/jacobi-mvapich2-gds.git
