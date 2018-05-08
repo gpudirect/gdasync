@@ -1,0 +1,15 @@
+[submodule "Libraries/gdrcopy"]
+	path = Libraries/gdrcopy
+	url = https://github.com/NVIDIA/gdrcopy.git
+[submodule "Libraries/libmp"]
+	path = Libraries/libmp
+	url = https://github.com/gpudirect/libmp.git
+[submodule "Libraries/libgdsync"]
+	path = Libraries/libgdsync
+	url = https://github.com/gpudirect/libgdsync.git
+[submodule "Apps/hpgmg"]
+	path = Apps/hpgmg
+	url = https://github.com/e-ago/hpgmg-cuda-async.git
+[submodule "Apps/2dstencil"]
+	path = Apps/2dstencil
+	url = https://github.com/e-ago/2dstencil-async.git
