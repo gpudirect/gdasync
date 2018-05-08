@@ -8,27 +8,20 @@
 
 include common.mk
 
-all: checks libs
+all: checks apps
 
 checks:
 	@if [ ! -d $(PREFIX) ]; then echo "PREFIX env not defined"; exit; fi;\
 	echo "using PREFIX=$(PREFIX)"
 
-libs: gdrcopy libgdsync libmp
+apps: 2dstencil 
 
-gdrcopy:
-	make -C gdrcopy PREFIX=$(PREFIX) DESTLIB=$(PREFIX)/lib clean all install
-
-libgdsync:
-	cd libgdsync && ./build.sh
-
-libmp:
-	cd libmp && ./build.sh
+2dstencil:
+	cd ../Apps/2dstencil && make -C . 
+#make -C ../Apps/2dstencil
 
 clean:
-	make -C gdrcopy clean && \
-	make -C libgdsync clean && \
-	make -C libmp clean
+	make -C ../Apps/2dstencil clean 
 
-.PHONY: checks configure libgdsync libmp clean all libs gdrcopy
+.PHONY: checks all 2dstencil
 

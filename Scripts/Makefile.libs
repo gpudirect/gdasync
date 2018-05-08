@@ -1,0 +1,35 @@
+# Copyright (c) 2017, NVIDIA CORPORATION.  All rights reserved.
+#
+# NVIDIA CORPORATION and its licensors retain all intellectual property
+# and proprietary rights in and to this software, related documentation
+# and any modifications thereto.  Any use, reproduction, disclosure or
+# distribution of this software and related documentation without an express
+# license agreement from NVIDIA CORPORATION is strictly prohibited.
+
+include common.mk
+
+all: checks libs
+
+checks:
+	@if [ ! -d $(PREFIX) ]; then echo "PREFIX env not defined"; exit; fi;\
+	echo "using PREFIX=$(PREFIX)"
+
+libs: gdrcopy libgdsync libmp
+
+gdrcopy:
+	make -C ../Libraries/gdrcopy PREFIX=$(PREFIX) DESTLIB=$(PREFIX)/lib clean all install
+
+libgdsync:
+	cd ../Libraries/libgdsync && ./build.sh
+
+libmp:
+	cd ../Libraries/libmp && ./build.sh
+
+
+clean:
+	make -C ../Libraries/gdrcopy clean && \
+	make -C ../Libraries/libgdsync clean && \
+	make -C ../Libraries/libmp clean
+
+.PHONY: checks configure libgdsync libmp clean all libs gdrcopy
+
