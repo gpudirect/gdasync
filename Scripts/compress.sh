@@ -26,11 +26,9 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-source header.sh
-
-./build_libs.sh
+source build_libs.sh
 
 [[ ! -d $PREFIX_LIBS/lib ]]      && { echo "ERROR: $PREFIX_LIBS/lib does not exist";   		exit 1; }
 [[ ! -d $PREFIX_LIBS/include ]]  && { echo "ERROR: $PREFIX_LIBS/include does not exist";   	exit 1; }
 
-tar -zcvf gdasync.tar.gz $PREFIX_LIBS/lib $PREFIX_LIBS/include
+cd $PREFIX_LIBS && tar -zcvf ../Scripts/gdasync.tar.gz lib include

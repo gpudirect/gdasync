@@ -12,7 +12,7 @@ For system requirements please refer to:
 Inside `gdasync` directory type:
 
 ```
-git submodules init
+git submodule init
 git submodule update --remote --merge 
 ```
 
