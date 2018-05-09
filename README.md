@@ -15,8 +15,9 @@ Inside `gdasync` directory type:
 git submodule init
 git submodule update --remote --merge 
 ```
+To fetch the most updated version of all submodules.
 
-In file *build.sh* configure the following variables:
+In file *header.sh* configure the following variables:
 
 ```
 PREFIX="/path/to/gdasync"
@@ -24,13 +25,22 @@ MPI_PATH="/path/to/mpi"
 CUDA_PATH="/path/to/cuda"
 ```
 
-Then type `./build.sh`
+To build GDAsync libraries `cd Scripts && ./build_libs.sh`.<br/>
+To build GDAsync applications `cd Scripts && ./build_apps.sh`.<br/>
+To create an archive with all GDAsync libraries and headers `cd Scripts && ./compress.sh`.<br/>
 
 ### Results
 
 Libraries are built in `$PREFIX/lib` <br>
 Headers are built in `$PREFIX/include` <br>
 Binaries (examples and benchmarks) are built in `$PREFIX/bin` <br>
+Compressed archive is `gdasync.tar.gz` in the main directory.<br><br>
+
+The default `gdasync.tar.gz` has been built with:
+- OpenMPI 3.0.0
+- MLNX_OFED_LINUX-4.3-1.0.1.0
+- CUDA 9.0
+- GCC 4.8.5
 
 ## Acknowledging GPUDirect Async
 
