@@ -14,7 +14,10 @@ checks:
 	@if [ ! -d $(PREFIX) ]; then echo "PREFIX env not defined"; exit; fi;\
 	echo "using PREFIX=$(PREFIX)"
 
-apps: 2dstencil 
+apps: hpgmg #2dstencil 
+
+hpgmg:
+	cd hpgmg && ./build.sh
 
 2dstencil:
 	cd ../Apps/2dstencil && make -C . 

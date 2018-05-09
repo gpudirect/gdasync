@@ -26,14 +26,6 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# ======== INPUT PARAMS ========
-BUILD_LIBS=1
-BUILD_APPS=1
-#Build Libraries only
-if [[ $1 -eq 1 ]]; then BUILD_APPS=0; fi
-#Build Apps only
-if [[ $1 -eq 2 ]]; then BUILD_LIBS=0; fi
-
 # ======== PATH SETUP ========
 export PREFIX="$HOME/gdasync"
 export PREFIX_LIBS="$PREFIX/Libraries"
@@ -54,12 +46,6 @@ LIBMP_PATH="$PREFIX_LIBS/libmp"
 
 [[ -z $CUDA_PATH ]]     && { echo "ERROR: CUDA_PATH env var empy";   	        	exit 1; }
 [[ ! -d $CUDA_PATH ]]     && { echo "ERROR: CUDA_PATH $CUDA_PATH does not exist";	        exit 1; }
-
-
-mkdir -p $PREFIX_LIBS/bin
-mkdir -p $PREFIX_LIBS/include
-mkdir -p $PREFIX_LIBS/lib
-
 
 # ======== MPI ========
 export MPI_HOME=$MPI_PATH
@@ -94,39 +80,3 @@ CU_LDFLAGS="$CU_LDFLAGS -L/usr/lib64"
 
 export CUDADRV
 export CU_CPPFLAGS CU_LDFLAGS
-
-PREFIX_TMP=$PREFIX
-export PREFIX=$PREFIX_LIBS
-
-# === Building GDAsync libraries
-if [[ $BUILD_LIBS -eq 1 ]]; then
-	# Configuration cleanup
-	rm -rf $PREFIX_LIBS/libgdsync/build
-	rm -rf $PREFIX_LIBS/libmp/build
-	# Libraries cleanup
-	rm -rf $PREFIX_LIBS/lib/*
-	# Binaries cleanup
-	rm -rf $PREFIX_LIBS/bin/*
-
-	make -f Makefile.libs all || exit 1
-	#export PREFIX=$PREFIX_TMP
-	
-	echo ""
-	echo ""
-	echo "### GDRCopy, LibGDSync and LibMP correctly built ###"
-	echo "# Libraries in $PREFIX_LIBS/lib"
-	echo "# Headers in $PREFIX_LIBS/include"
-	echo "# Binaries in $PREFIX_LIBS/bin"
-	echo "#####################################################"
-	echo ""
-
-fi
-
-# ======== Set LD_LIBRARY_PATH ========
-#export LD_LIBRARY_PATH=$PREFIX/lib:${LD_LIBRARY_PATH}
-
-# === Building GDAsync applications
-if [[ $BUILD_APPS -eq 1 ]]; then
-	echo "Building apps..."
-	make -f Makefile.apps all || exit 1
-fi
