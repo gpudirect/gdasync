@@ -41,8 +41,8 @@ LIBMP_PATH="$PREFIX_LIBS/libmp"
 [[ -z $PREFIX ]]        && { echo "ERROR: PREFIX env var empy";         		exit 1; }
 [[ ! -d $PREFIX ]]        && { echo "ERROR: PREFIX $PREFIX does not exist";       	exit 1; }
 
-[[ -z $MPI_HOME ]]      && { echo "ERROR: MPI_HOME env var empy";       		exit 1; }
-[[ ! -d $MPI_HOME ]]      && { echo "ERROR: MPI_HOME $MPI_HOME does not exist";   	exit 1; }
+[[ -z $MPI_PATH ]]      && { echo "ERROR: MPI_PATH env var empy";       		exit 1; }
+[[ ! -d $MPI_PATH ]]      && { echo "ERROR: MPI_PATH $MPI_PATH does not exist";   	exit 1; }
 
 [[ -z $CUDA_PATH ]]     && { echo "ERROR: CUDA_PATH env var empy";   	        	exit 1; }
 [[ ! -d $CUDA_PATH ]]     && { echo "ERROR: CUDA_PATH $CUDA_PATH does not exist";	        exit 1; }
