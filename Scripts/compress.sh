@@ -31,4 +31,4 @@ source build_libs.sh
 [[ ! -d $PREFIX_LIBS/lib ]]      && { echo "ERROR: $PREFIX_LIBS/lib does not exist";   		exit 1; }
 [[ ! -d $PREFIX_LIBS/include ]]  && { echo "ERROR: $PREFIX_LIBS/include does not exist";   	exit 1; }
 
-cd $PREFIX_LIBS && tar -zcvf ../Scripts/gdasync.tar.gz lib include
+cd $PREFIX_LIBS && tar -zcvf ../gdasync.tar.gz lib include
