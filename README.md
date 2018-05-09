@@ -29,7 +29,7 @@ To build GDAsync libraries `cd Scripts && ./build_libs.sh`.<br/>
 To build GDAsync applications `cd Scripts && ./build_apps.sh`.<br/>
 To create an archive with all GDAsync libraries and headers `cd Scripts && ./compress.sh`.<br/>
 
-N.B. You need to include in you LD_LIBRARY_PATH the lib directory. For example:
+N.B. You need to include in you `LD_LIBRARY_PATH` the lib directory. For instance:
 ```
 export LD_LIBRARY_PATH=$HOME/gdasync/Libraries/lib:${LD_LIBRARY_PATH}
 ```
