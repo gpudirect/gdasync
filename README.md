@@ -7,6 +7,20 @@ For system requirements please refer to:
 - [LibGDSync requirements](https://github.com/gpudirect/libgdsync#requirements)
 - [LibMP requirements](https://github.com/gpudirect/libmp#requirements)
 
+### Scripts
+
+Build:
+- `headers.sh` contains common variables
+- `build_libs.sh` builds all submodules in `gdasync/Libraries` directory
+- `build_apps.sh` builds all submodules in `gdasync/Apps` directory
+- `compress.sh` builds all submodules in `gdasync/Libraries` directory and creates a `gdasync.tar.gz` archive in the main directoy
+
+Execute:
+- `run_bin.sh` useful to run a GPUDirect Async binary with all the environment variables
+- `mapper.sh` used by `run_bin.sh` to map, according to the topology of the system, the correct GPU and HCA to each process. You need to add your topology here.
+- `run_libgdsync.sh` runs all LibGDSync binaries in `gdasync/Libraries/bin`
+- `run_libmp.sh` runs all LibMP binaries in `gdasync/Libraries/bin`
+
 ### Build
 
 Inside `gdasync` directory type:
