@@ -14,8 +14,11 @@ checks:
 	@if [ ! -d $(PREFIX) ]; then echo "PREFIX env not defined"; exit; fi;\
 	echo "using PREFIX=$(PREFIX)"
 
-apps: hpgmg
+apps: hpgmg jacobi
 #2dstencil 
+
+jacobi:
+	cd ../Apps/jacobi/libmp && make clean && make
 
 hpgmg:
 	cd ../Apps/hpgmg && rm -rf build && ./build.sh
@@ -25,7 +28,6 @@ comd:
 
 2dstencil:
 	cd ../Apps/2dstencil && make -C . 
-#make -C ../Apps/2dstencil
 
 clean:
 	make -C ../Apps/2dstencil clean 
