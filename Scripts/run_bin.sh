@@ -25,7 +25,7 @@ if [[ $NP -lt 1 ]]; then
 fi
 
 EXEC=$2
-[[ ! -e $PREFIX_LIBS/bin/$EXEC ]]    && { echo "ERROR: $PREFIX_LIBS/bin/$EXEC not found"; exit 1; }
+[[ ! -e $EXEC ]]    && { echo "ERROR: $EXEC not found"; exit 1; }
 shift 2
 PARAMS=$@
 
@@ -82,7 +82,7 @@ $MPI_HOME/bin/mpirun -verbose  $OMPI_params   	\
         -x COMM_USE_ASYNC_KI=$COMM_KI 		\
         \
         -x LD_LIBRARY_PATH -x PATH 		\
-        --map-by node -np $NP -hostfile hostfile ./mapper.sh $PREFIX_LIBS/bin/$EXEC $PARAMS
+        --map-by node -np $NP -hostfile hostfile ./mapper.sh $EXEC $PARAMS
 
 
 # nvprof -o nvprof-kernel.%q{OMPI_COMM_WORLD_RANK}.nvprof
