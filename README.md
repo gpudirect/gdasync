@@ -48,8 +48,6 @@ N.B. You need to include in you `LD_LIBRARY_PATH` the lib directory. For instanc
 export LD_LIBRARY_PATH=$HOME/gdasync/Libraries/lib:${LD_LIBRARY_PATH}
 ```
 
-### Results
-
 Libraries are built in `$PREFIX/lib` <br>
 Headers are built in `$PREFIX/include` <br>
 Binaries (examples and benchmarks) are built in `$PREFIX/bin` <br>
