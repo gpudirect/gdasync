@@ -48,8 +48,8 @@ LIBMP_PATH="$PREFIX_LIBS/libmp"
 [[ ! -d $CUDA_PATH ]]     && { echo "ERROR: CUDA_PATH $CUDA_PATH does not exist";	        exit 1; }
 
 # ======== MPI ========
+echo "MPI_PATH=$MPI_PATH"
 export MPI_HOME=$MPI_PATH
-echo "MPI_HOME=$MPI_HOME"
 export MPI_NAME=openmpi
 export MPI_BIN=$MPI_HOME/bin
 export MPI_INCLUDE=$MPI_HOME/include
@@ -57,7 +57,7 @@ export MPI_LIB=$MPI_HOME/lib:$MPI_HOME/lib64
 export PATH=$MPI_BIN:$PATH
 
 # ======== CUDA ========
-echo "loading $CUDA_PATH environment..."
+echo "CUDA_PATH=$CUDA_PATH"
 export CUDA=$CUDA_PATH
 export CUDA_PATH=$CUDA_PATH
 export CUDA_HOME=$CUDA
