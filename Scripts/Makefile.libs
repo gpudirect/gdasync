@@ -29,7 +29,7 @@ libmp:
 clean:
 	make -C ../Libraries/gdrcopy clean && \
 	cd ../Libraries/libgdsync && rm -rf build && \
-	make -C ../Libraries/libmp && rm -rf build
+	cd ../Libraries/libmp && rm -rf build
 
 .PHONY: checks configure libgdsync libmp clean all libs gdrcopy
 
