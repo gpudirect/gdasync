@@ -44,7 +44,7 @@ rm -rf $PREFIX_LIBS/bin/*
 PREFIX_TMP=$PREFIX
 export PREFIX=$PREFIX_LIBS
 
-make -f Makefile.libs all || exit 1
+make -f Makefile.libs clean all || exit 1
 #export PREFIX=$PREFIX_TMP
 
 echo ""

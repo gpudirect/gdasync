@@ -34,5 +34,5 @@ echo "Building apps..."
 PREFIX_TMP=$PREFIX
 export PREFIX=$PREFIX_LIBS
 
-make -f Makefile.apps all || exit 1
+make -f Makefile.apps clean all || exit 1
 
