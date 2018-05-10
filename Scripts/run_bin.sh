@@ -25,7 +25,7 @@ if [[ $NP -lt 1 ]]; then
 fi
 
 EXEC=$2
-[[ ! -e $EXEC ]]    && { echo "ERROR: $EXEC not found"; exit 1; }
+[[ ! -e $PREFIX_LIBS/bin/$EXEC ]]    && { echo "ERROR: $PREFIX_LIBS/bin/$EXEC not found"; exit 1; }
 shift 2
 PARAMS=$@
 
