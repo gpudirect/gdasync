@@ -17,19 +17,19 @@ checks:
 libs: gdrcopy libgdsync libmp
 
 gdrcopy:
-	make -C ../Libraries/gdrcopy PREFIX=$(PREFIX) DESTLIB=$(PREFIX)/lib clean all install
+	make -C $(PREFIX)/gdrcopy PREFIX=$(PREFIX) DESTLIB=$(PREFIX)/lib clean all install
 
 libgdsync:
-	cd ../Libraries/libgdsync && ./build.sh
+	cd $(PREFIX)/libgdsync && ./build.sh
 
 libmp:
-	cd ../Libraries/libmp && ./build.sh
+	cd $(PREFIX)/libmp && ./build.sh
 
 
 clean:
 	make -C ../Libraries/gdrcopy clean && \
-	cd ../Libraries/libgdsync && rm -rf build && \
-	cd ../Libraries/libmp && rm -rf build
+	cd $(PREFIX)/libgdsync && rm -rf build && \
+	cd $(PREFIX)/libmp && rm -rf build
 
 .PHONY: checks configure libgdsync libmp clean all libs gdrcopy
 

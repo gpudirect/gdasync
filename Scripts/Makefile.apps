@@ -18,21 +18,21 @@ apps: hpgmg jacobi 2dstencil
 #2dstencil 
 
 hpgmg:
-	cd ../Apps/hpgmg && ./build.sh
+	cd $(PREFIX)/hpgmg && ./build.sh
 
 jacobi:
-	cd ../Apps/jacobi/libmp && make
+	cd $(PREFIX)/jacobi/libmp && make
 
 2dstencil:
-	cd ../Apps/2dstencil && make  
+	cd $(PREFIX)/2dstencil && make  
 
 comd:
-	cd ../Apps/comd && ./build.sh
+	cd $(PREFIX)/comd && ./build.sh
 
 clean:
-	make -C ../Apps/2dstencil clean && \
-	make -C ../Apps/jacobi/libmp clean && \
-	cd ../Apps/hpgmg && rm -rf build
+	make -C $(PREFIX)/2dstencil clean && \
+	make -C $(PREFIX)/jacobi/libmp clean && \
+	cd $(PREFIX)/hpgmg && rm -rf build
 
 .PHONY: checks clean all hpgmg jacobi 2dstencil comd
 
