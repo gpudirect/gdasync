@@ -51,8 +51,7 @@ export LD_LIBRARY_PATH=$HOME/gdasync/Libraries/lib:${LD_LIBRARY_PATH}
 Libraries are built in `$PREFIX/lib` <br>
 Headers are built in `$PREFIX/include` <br>
 Binaries (examples and benchmarks) are built in `$PREFIX/bin` <br>
-Compressed archive is `gdasync.tar.gz` in the main directory.<br><br>
-
+Compressed archive is `gdasync.tar.gz` in the main directory.<br>
 The default `gdasync.tar.gz` has been built with:
 - OpenMPI 3.0.0
 - MLNX_OFED_LINUX-4.3-1.0.1.0
