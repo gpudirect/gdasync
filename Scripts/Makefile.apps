@@ -8,7 +8,7 @@
 
 include common.mk
 
-all: checks apps
+all: clean checks apps
 
 checks:
 	@if [ ! -d $(PREFIX) ]; then echo "PREFIX env not defined"; exit; fi;\
@@ -17,20 +17,22 @@ checks:
 apps: hpgmg jacobi
 #2dstencil 
 
-jacobi:
-	cd ../Apps/jacobi/libmp && make clean && make
-
 hpgmg:
-	cd ../Apps/hpgmg && rm -rf build && ./build.sh
+	cd ../Apps/hpgmg && ./build.sh
 
-comd:
-	cd ../Apps/comd && ./build.sh
+jacobi:
+	cd ../Apps/jacobi/libmp && make
 
 2dstencil:
 	cd ../Apps/2dstencil && make -C . 
 
-clean:
-	make -C ../Apps/2dstencil clean 
+comd:
+	cd ../Apps/comd && ./build.sh
 
-.PHONY: checks all 2dstencil
+clean:
+	make -C ../Apps/2dstencil clean && \
+	make -C ../Apps/jacobi/libmp clean && \
+	cd ../Apps/hpgmg && rm -rf build
+
+.PHONY: checks clean all hpgmg jacobi 2dstencil comd
 
