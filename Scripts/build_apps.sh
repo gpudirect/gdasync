@@ -32,7 +32,7 @@ source header.sh
 echo "Building apps..."
 
 PREFIX_TMP=$PREFIX
-export PREFIX=$PREFIX_APPS
+export PREFIX=$PREFIX_LIBS
 
 make -f Makefile.apps clean all || exit 1
 
