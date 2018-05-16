@@ -20,15 +20,35 @@ ofile=$OUT_DIR/gds_sanity.stdout
 efile=$OUT_DIR/gds_sanity.stderr
 ./run_bin.sh 1 $PREFIX_LIBS/bin/gds_sanity 1>$ofile 2>$efile
 
-echo "Running gds_kernel_loopback_latency..."
-ofile=$OUT_DIR/gds_kernel_loopback_latency.stdout
-efile=$OUT_DIR/gds_kernel_loopback_latency.stderr
+echo "Running gds_kernel_loopback_latency peersync..."
+ofile=$OUT_DIR/gds_kernel_loopback_latency_peersync.stdout
+efile=$OUT_DIR/gds_kernel_loopback_latency_peersync.stderr
 ./run_bin.sh 1 $PREFIX_LIBS/bin/gds_kernel_loopback_latency 1>$ofile 2>$efile
 
-echo "Running gds_kernel_latency..."
+echo "Running gds_kernel_loopback_latency peersync and descriptors..."
+ofile=$OUT_DIR/gds_kernel_loopback_latency_peersync_descs.stdout
+efile=$OUT_DIR/gds_kernel_loopback_latency_peersync_descs.stderr
+./run_bin.sh 1 $PREFIX_LIBS/bin/gds_kernel_loopback_latency -U 1>$ofile 2>$efile
+
+echo "Running gds_kernel_loopback_latency no peersync..."
+ofile=$OUT_DIR/gds_kernel_loopback_latency_no_peersync.stdout
+efile=$OUT_DIR/gds_kernel_loopback_latency_no_peersync.stderr
+./run_bin.sh 1 $PREFIX_LIBS/bin/gds_kernel_loopback_latency -P -U 1>$ofile 2>$efile
+
+echo "Running gds_kernel_latency.peersync.."
 ofile=$OUT_DIR/gds_kernel_latency.stdout
 efile=$OUT_DIR/gds_kernel_latency.stderr
 ./run_bin.sh 2 $PREFIX_LIBS/bin/gds_kernel_latency 1>$ofile 2>$efile
+
+echo "Running gds_kernel_latency peersync and descriptors..."
+ofile=$OUT_DIR/gds_kernel_latency_peersync_descs.stdout
+efile=$OUT_DIR/gds_kernel_latency_peersync_descs.stderr
+./run_bin.sh 2 $PREFIX_LIBS/bin/gds_kernel_latency -U 1>$ofile 2>$efile
+
+echo "Running gds_kernel_latency no peersync..."
+ofile=$OUT_DIR/gds_kernel_latency_no_peersync.stdout
+efile=$OUT_DIR/gds_kernel_latency_no_peersync.stderr
+./run_bin.sh 2 $PREFIX_LIBS/bin/gds_kernel_latency -P -U 1>$ofile 2>$efile
 
 echo "Running gds_poll_lat..."
 ofile=$OUT_DIR/gds_poll_lat.stdout
