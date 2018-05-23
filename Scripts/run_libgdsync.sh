@@ -101,7 +101,7 @@ efile=$OUT_DIR/gds_poll_lat.stderr
 echo "Running gds_poll_lat, GMEM buffers"
 ofile=$OUT_DIR/gds_poll_lat_gmem.stdout
 efile=$OUT_DIR/gds_poll_lat_gmem.stderr
-./run_bin.sh 1 $PREFIX_LIBS/bin/gds_poll_lat -E 1>$ofile 2>$efile
+./run_bin.sh 1 $PREFIX_LIBS/bin/gds_poll_lat -g 1>$ofile 2>$efile
 
 echo ""
 echo "Outputs in $OUT_DIR"
