@@ -20,12 +20,12 @@ mkdir -p $OUT_DIR
 echo "Running gds_sanity"
 ofile=$OUT_DIR/gds_sanity.stdout
 efile=$OUT_DIR/gds_sanity.stderr
-./run_bin.sh 1 $PREFIX_LIBS/bin/gds_sanity 1>$ofile 2>$efile
+./run_bin.sh 1 $PREFIX_LIBS/bin/gds_sanity -f -m 1>$ofile 2>$efile
 
 echo "Running gds_sanity with GMEM buffers"
 ofile=$OUT_DIR/gds_sanity_gmem.stdout
 efile=$OUT_DIR/gds_sanity_gmem.stderr
-./run_bin.sh 1 $PREFIX_LIBS/bin/gds_sanity -g 1>$ofile 2>$efile
+./run_bin.sh 1 $PREFIX_LIBS/bin/gds_sanity -f -m -g 1>$ofile 2>$efile
 
 # ============ gds_kernel_loopback_latency ============
 
