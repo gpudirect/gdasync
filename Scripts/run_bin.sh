@@ -59,17 +59,18 @@ $MPI_HOME/bin/mpirun -verbose  $OMPI_params   	\
         -x MP_EVENT_ASYNC=0 			\
         -x MP_GUARD_PROGRESS=0 			\
         \
-        -x GDS_DISABLE_WRITE64=1           	\
+        -x GDS_DISABLE_WRITE64=0           	\
         -x GDS_SIMULATE_WRITE64=0          	\
         -x GDS_DISABLE_INLINECOPY=0        	\
         -x GDS_DISABLE_WEAK_CONSISTENCY=0  	\
         -x GDS_DISABLE_MEMBAR=0            	\
         -x GDS_FLUSHER_TYPE=0 		   	\
+	-x GDS_DISABLE_WAIT_NOR=1		\
         \
         -x MLX5_FREEZE_ON_ERROR_CQE=0 		\
         -x GPU_ENABLE_DEBUG=0 			\
         -x GDRCOPY_ENABLE_LOGGING=0 		\
-        -x GDRCOPY_LOG_LEVEL=1 			\
+        -x GDRCOPY_LOG_LEVEL=0 			\
         \
         -x USE_CALC_SIZE=0 			\
         -x KERNEL_TIME=$TIME 			\

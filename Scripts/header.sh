@@ -27,12 +27,12 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 # ======== PATH SETUP ========
-export PREFIX="$HOME/gdasync"
+export PREFIX="$HOME/gdasync/gdasync"
 export PREFIX_LIBS="$PREFIX/Libraries"
 export PREFIX_APPS="$PREFIX/Apps"
 
-export MPI_PATH="$HOME/openmpi-2.1.3/build"
-export CUDA_PATH="/usr/local/cuda-9.0"
+export MPI_PATH="$HOME/gdasync/openmpi-3.0.0/build"
+export CUDA_PATH="/usr/local/cuda-9.2"
 
 LIBGDSYNC_PATH="$PREFIX_LIBS/libgdsync"
 LIBMP_PATH="$PREFIX_LIBS/libmp"
@@ -80,3 +80,29 @@ CU_LDFLAGS="$CU_LDFLAGS -L/usr/lib64"
 
 export CUDADRV
 export CU_CPPFLAGS CU_LDFLAGS
+
+function check_errors {
+        local ERROR_FILE=$1
+        local LOG_FILE=$2
+        local RETURN_VALUE=$3
+
+        if [[ $RETURN_VALUE != 0 ]]; then
+		echo "Error: return value $RETURN_VALUE"
+                return 1
+        elif grep -Eq "ERROR" $LOG_FILE; then
+		echo "Error!"
+		return 2
+        elif grep -Eq "error" $LOG_FILE; then
+		echo "Error!"
+                return 2
+        elif grep -Eq "ERROR" $ERROR_FILE; then
+		echo "Error!"
+                return 3
+        elif grep -Eq "error" $ERROR_FILE; then
+		echo "Error!"
+                return 3
+        fi
+
+        #PASSED
+        return 0
+}

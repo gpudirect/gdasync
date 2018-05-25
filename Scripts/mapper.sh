@@ -93,6 +93,7 @@ export \
         GDS_DISABLE_INLINECOPY        	\
         GDS_DISABLE_WEAK_CONSISTENCY  	\
         GDS_DISABLE_MEMBAR            	\
+	GDS_DISABLE_WAIT_NOR		\
         GDS_FLUSHER_TYPE		\
         \
         MLX5_FREEZE_ON_ERROR_CQE 	\
