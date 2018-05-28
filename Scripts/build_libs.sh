@@ -37,7 +37,10 @@ mkdir -p $PREFIX_LIBS/lib
 rm -rf $PREFIX_LIBS/libgdsync/build
 rm -rf $PREFIX_LIBS/libmp/build
 # Libraries cleanup
-rm -rf $PREFIX_LIBS/lib/*
+rm -rf $PREFIX_LIBS/lib/libgdrapi*
+rm -rf $PREFIX_LIBS/lib/libgdsync*
+rm -rf $PREFIX_LIBS/lib/libmp*
+rm -rf $PREFIX_LIBS/lib/libmpcomm*
 # Binaries cleanup
 rm -rf $PREFIX_LIBS/bin/*
 

@@ -42,6 +42,7 @@ lrank=$OMPI_COMM_WORLD_LOCAL_RANK
 #Default settings
 USE_GPU=0;
 USE_CPU=0;
+USA_HCA=0;
 MP_USE_IB_HCA=mlx5_0;
 OMPI_MCA_btl_openib_if_include=mlx5_0;
 
@@ -59,6 +60,7 @@ case ${HOSTNAME} in
 		USE_CPU=${hlrank}
 		HCA=mlx5_${lrank}
 		MP_USE_IB_HCA=${HCA}
+		USE_HCA=${HCA}
 		OMPI_MCA_btl_openib_if_include=${HCA}
 	;;
 
@@ -73,7 +75,7 @@ echo "# ${HOSTNAME}: picking GPU:$CUDA_VISIBLE_DEVICES/$USE_GPU CPU:$USE_CPU HCA
 PATH=$PATH:$PWD
 
 export \
-	CUDA_VISIBLE_DEVICES USE_GPU USE_CPU MP_USE_IB_HCA OMPI_MCA_btl_openib_if_include \
+	CUDA_VISIBLE_DEVICES USE_GPU USE_CPU USE_HCA MP_USE_IB_HCA OMPI_MCA_btl_openib_if_include \
 	\
 	MP_ENABLE_DEBUG 		\
         MP_ENABLE_WARN 			\
