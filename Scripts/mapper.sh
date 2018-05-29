@@ -45,6 +45,12 @@ USE_CPU=0;
 USA_HCA=0;
 MP_USE_IB_HCA=mlx5_0;
 OMPI_MCA_btl_openib_if_include=mlx5_0;
+# ********* 
+# * Required by OpenMPI >= 3.x when using GDR
+# * issue https://github.com/open-mpi/ompi/issues/4650
+# * you can assign true value if OpenMPI is < 3.x or you are not using GDR
+# *********
+OMPI_MCA_btl_openib_cuda_async_recv=false
 
 echo "hostname=${HOSTNAME}"
 echo "lrank=$lrank"
@@ -75,7 +81,9 @@ echo "# ${HOSTNAME}: picking GPU:$CUDA_VISIBLE_DEVICES/$USE_GPU CPU:$USE_CPU HCA
 PATH=$PATH:$PWD
 
 export \
-	CUDA_VISIBLE_DEVICES USE_GPU USE_CPU USE_HCA MP_USE_IB_HCA OMPI_MCA_btl_openib_if_include \
+	CUDA_VISIBLE_DEVICES USE_GPU USE_CPU USE_HCA MP_USE_IB_HCA 	\
+	OMPI_MCA_btl_openib_if_include 					\
+	OMPI_MCA_btl_openib_cuda_async_recv 				\
 	\
 	MP_ENABLE_DEBUG 		\
         MP_ENABLE_WARN 			\
