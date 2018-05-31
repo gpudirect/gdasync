@@ -12,7 +12,7 @@ source header.sh
 [[ ! -e run_bin.sh ]]	&& { echo "ERROR: run_bin.sh missing"; exit 1; }
 
 now=$(date +%F-%T)
-OUT_DIR=$PREFIX_LIBS/out_libgdsync_${now}
+OUT_DIR=$PREFIX/outputs/out_libgdsync_${now}
 mkdir -p $OUT_DIR
 
 # ================== gds_sanity ==================
@@ -21,6 +21,12 @@ echo "Running gds_sanity"
 ofile=$OUT_DIR/gds_sanity.stdout
 efile=$OUT_DIR/gds_sanity.stderr
 ./run_bin.sh 1 $PREFIX_LIBS/bin/gds_sanity 1>$ofile 2>$efile
+check_errors $efile $ofile $?
+
+echo "Running gds_sanity, NOR"
+ofile=$OUT_DIR/gds_sanity_nor.stdout
+efile=$OUT_DIR/gds_sanity_nor.stderr
+./run_bin.sh 1 $PREFIX_LIBS/bin/gds_sanity -N 1>$ofile 2>$efile
 check_errors $efile $ofile $?
 
 echo "Running gds_sanity, membar"
@@ -35,6 +41,13 @@ efile=$OUT_DIR/gds_sanity_gmem.stderr
 ./run_bin.sh 1 $PREFIX_LIBS/bin/gds_sanity -g 1>$ofile 2>$efile
 check_errors $efile $ofile $?
 
+
+echo "Running gds_sanity, GMEM buffers, NOR"
+ofile=$OUT_DIR/gds_sanity_gmem_nor.stdout
+efile=$OUT_DIR/gds_sanity_gmem_nor.stderr
+./run_bin.sh 1 $PREFIX_LIBS/bin/gds_sanity -g -N 1>$ofile 2>$efile
+check_errors $efile $ofile $?
+
 echo "Running gds_sanity, GMEM buffers, membar"
 ofile=$OUT_DIR/gds_sanity_gmem_membar.stdout
 efile=$OUT_DIR/gds_sanity_gmem_membar.stderr
@@ -47,6 +60,7 @@ efile=$OUT_DIR/gds_sanity_gmem.stderr
 ./run_bin.sh 1 $PREFIX_LIBS/bin/gds_sanity -g -f 1>$ofile 2>$efile
 check_errors $efile $ofile $?
 
+exit
 # ============ gds_kernel_loopback_latency ============
 
 echo "Running gds_kernel_loopback_latency peersync"
