@@ -60,7 +60,6 @@ efile=$OUT_DIR/gds_sanity_gmem.stderr
 ./run_bin.sh 1 $PREFIX_LIBS/bin/gds_sanity -g -f 1>$ofile 2>$efile
 check_errors $efile $ofile $?
 
-exit
 # ============ gds_kernel_loopback_latency ============
 
 echo "Running gds_kernel_loopback_latency peersync"
