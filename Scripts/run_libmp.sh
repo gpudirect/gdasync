@@ -12,7 +12,7 @@ source header.sh
 [[ ! -e run_bin.sh ]]	&& { echo "ERROR: run_bin.sh missing"; exit 1; }
 
 now=$(date +%F-%T)
-OUT_DIR=$PREFIX_LIBS/out_libmp_${now}
+OUT_DIR=$PREFIX/outputs/out_libmp_${now}
 mkdir -p $OUT_DIR
 
 #Examples
