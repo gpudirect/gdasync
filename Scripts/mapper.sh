@@ -70,18 +70,18 @@ case ${HOSTNAME} in
 		OMPI_MCA_btl_openib_if_include=${HCA}
 	;;
 
-	pwr*)
-		if (( $lrank > 2 )); then echo "too many ranks"; exit; fi
-		hlrank=$(($lrank / 2)) # 0,1
-		dlrank=$(($lrank * 2)) # 0,2
-		#CUDA_VISIBLE_DEVICES=$dlrank
-		USE_GPU=${dlrank}  #0,2
-		USE_CPU=${hlrank}  #0,1
-		HCA=mlx5_${dlrank} #0,2
-		MP_USE_IB_HCA=${HCA}
-		USE_HCA=${HCA}
-		OMPI_MCA_btl_openib_if_include=${HCA}
-	;;
+	*pwr*)
+                if (( $lrank > 2 )); then echo "too many ranks"; exit; fi
+                hlrank=$(($lrank * 8)) # 0,8
+                dlrank=$(($lrank * 2)) # 0,2
+                #CUDA_VISIBLE_DEVICES=${dlrank}
+		USE_GPU=${dlrank}
+                USE_CPU=${hlrank}
+                HCA=mlx5_${dlrank}
+                MP_USE_IB_HCA=${HCA}
+                USE_HCA=${HCA}
+                OMPI_MCA_btl_openib_if_include=${HCA}
+        ;;
 
 	*brdw0*) CUDA_VISIBLE_DEVICES=3; USE_CPU=0; MP_USE_IB_HCA=mlx5_0;;
 	*brdw1*) CUDA_VISIBLE_DEVICES=0; USE_CPU=0; MP_USE_IB_HCA=mlx5_0;;
