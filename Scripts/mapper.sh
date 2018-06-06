@@ -70,6 +70,19 @@ case ${HOSTNAME} in
 		OMPI_MCA_btl_openib_if_include=${HCA}
 	;;
 
+	pwr*)
+		if (( $lrank > 2 )); then echo "too many ranks"; exit; fi
+		hlrank=$(($lrank / 2)) # 0,1
+		dlrank=$(($lrank * 2)) # 0,2
+		#CUDA_VISIBLE_DEVICES=$dlrank
+		USE_GPU=${dlrank}  #0,2
+		USE_CPU=${hlrank}  #0,1
+		HCA=mlx5_${dlrank} #0,2
+		MP_USE_IB_HCA=${HCA}
+		USE_HCA=${HCA}
+		OMPI_MCA_btl_openib_if_include=${HCA}
+	;;
+
 	*brdw0*) CUDA_VISIBLE_DEVICES=3; USE_CPU=0; MP_USE_IB_HCA=mlx5_0;;
 	*brdw1*) CUDA_VISIBLE_DEVICES=0; USE_CPU=0; MP_USE_IB_HCA=mlx5_0;;
 	*ivy2*) CUDA_VISIBLE_DEVICES=0; USE_CPU=0; MP_USE_IB_HCA=mlx5_0;;
@@ -103,7 +116,9 @@ export \
         GDS_DISABLE_INLINECOPY        	\
         GDS_DISABLE_WEAK_CONSISTENCY  	\
         GDS_DISABLE_MEMBAR            	\
+        GDS_DISABLE_REMOTE_FLUSH        \
 	GDS_DISABLE_WAIT_NOR		\
+        GDS_ENABLE_WAIT_CHECKER         \
         GDS_FLUSHER_TYPE		\
         \
         MLX5_FREEZE_ON_ERROR_CQE 	\
@@ -139,8 +154,10 @@ elif [ "$use_gdb" != "0" ]; then
     exec gdb $exe
 elif [ ! -z $USE_CPU ]; then
     numactl --cpunodebind=${USE_CPU} -l $exe $params
+#    ( numactl --cpunodebind=${USE_CPU} -l $exe $params ) 2>&1 >$HOME/run-${exe##*/}-${HOSTNAME}-${lrank}.log
 #    numactl --physcpubind=${USE_CPU} -l $exe $params
 else
     $exe $params
-# ) 2>&1 |tee bu-${HOSTNAME}.log
+#  2>&1 >$HOME/run-${exe##*/}-${HOSTNAME}-${lrank}.log
+# ) 2>&1 |tee bu-${HOSTNAME}-.log
 fi
