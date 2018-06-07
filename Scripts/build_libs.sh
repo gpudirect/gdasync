@@ -35,7 +35,15 @@ mkdir -p $PREFIX_LIBS/lib
 # === Building GDAsync libraries
 # Configuration cleanup
 rm -rf $PREFIX_LIBS/libgdsync/build
+rm -rf $PREFIX_LIBS/libgdsync/autom4te.cache
+rm -rf $PREFIX_LIBS/libgdsync/config
+rm -rf $PREFIX_LIBS/libgdsync/configure
+
 rm -rf $PREFIX_LIBS/libmp/build
+rm -rf $PREFIX_LIBS/libmp/autom4te.cache
+rm -rf $PREFIX_LIBS/libmp/config
+rm -rf $PREFIX_LIBS/libmp/configure
+
 # Libraries cleanup
 rm -rf $PREFIX_LIBS/lib/libgdrapi*
 rm -rf $PREFIX_LIBS/lib/libgdsync*
