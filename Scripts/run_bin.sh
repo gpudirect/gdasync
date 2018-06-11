@@ -48,7 +48,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH
 $MPI_HOME/bin/mpirun -verbose  $OMPI_params   	\
         -x MP_ENABLE_DEBUG=0 			\
         -x MP_ENABLE_WARN=0 			\
-        -x GDS_ENABLE_DEBUG=1 			\
+        -x GDS_ENABLE_DEBUG=0 			\
         -x MLX5_DEBUG_MASK=0 			\
         -x ENABLE_DEBUG_MSG=0 			\
         \
@@ -64,25 +64,25 @@ $MPI_HOME/bin/mpirun -verbose  $OMPI_params   	\
         -x GDS_DISABLE_INLINECOPY=0        	\
         -x GDS_DISABLE_WEAK_CONSISTENCY=0  	\
         -x GDS_DISABLE_MEMBAR=0            	\
-        -x GDS_DISABLE_REMOTE_FLUSH=1           \
-	-x GDS_DISABLE_WAIT_NOR=0		\
-        -x GDS_ENABLE_WAIT_CHECKER=1            \
-        -x GDS_FLUSHER_TYPE=0 		   	\
+        -x GDS_DISABLE_REMOTE_FLUSH=1       \
+		-x GDS_DISABLE_WAIT_NOR=1			\
+        -x GDS_ENABLE_WAIT_CHECKER=0        \
+        -x GDS_FLUSHER_TYPE=0 		 	  	\
         \
         -x MLX5_FREEZE_ON_ERROR_CQE=0 		\
-        -x GPU_ENABLE_DEBUG=1 			\
+        -x GPU_ENABLE_DEBUG=0 				\
         -x GDRCOPY_ENABLE_LOGGING=0 		\
-        -x GDRCOPY_LOG_LEVEL=0 			\
+        -x GDRCOPY_LOG_LEVEL=0 				\
         \
-        -x USE_CALC_SIZE=0 			\
+        -x USE_CALC_SIZE=0 				\
         -x KERNEL_TIME=$TIME 			\
-        -x MAX_SIZE=$SIZE 			\
+        -x MAX_SIZE=$SIZE 				\
         -x USE_GPU_BUFFERS=0 			\
         -x ENABLE_VALIDATION=0 			\
         \
         -x COMM_USE_COMM=$COMM 			\
-        -x COMM_USE_ASYNC_SA=$COMM_SA 		\
-        -x COMM_USE_ASYNC_KI=$COMM_KI 		\
+        -x COMM_USE_ASYNC_SA=$COMM_SA 	\
+        -x COMM_USE_ASYNC_KI=$COMM_KI 	\
         \
         -x LD_LIBRARY_PATH -x PATH 		\
         --map-by node -np $NP -hostfile hostfile ./mapper.sh $EXEC $PARAMS
