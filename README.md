@@ -20,7 +20,7 @@ Build:
 
 Execute:
 - `run_bin.sh` useful to run a GPUDirect Async binary with all the environment variables
-- `mapper.sh` used by `run_bin.sh` to map, according to the topology of the system, the correct GPU and HCA to each process. You need to add your topology here.
+- `mapper.sh` used by `run_bin.sh` to map, according to the topology of the system, the correct GPU and HCA to each process. **You need to add/modify your topology here.**
 - `run_libgdsync.sh` runs all LibGDSync binaries in `gdasync/Libraries/bin`
 - `run_libmp.sh` runs all LibMP binaries in `gdasync/Libraries/bin`
 
