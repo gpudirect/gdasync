@@ -26,13 +26,15 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# ======== ENV VARS - Need to be configured ========
+export PREFIX="$HOME/gdasync"
+export MPI_PATH="/path/to/openmpi"
+export CUDA_PATH="/usr/local/cuda-9.2"
+# ==================================================
+
 # ======== PATH SETUP ========
-export PREFIX="$HOME/gdasync/gdasync"
 export PREFIX_LIBS="$PREFIX/Libraries"
 export PREFIX_APPS="$PREFIX/Apps"
-
-export MPI_PATH="$HOME/gdasync/openmpi-3.0.0/build"
-export CUDA_PATH="/usr/local/cuda-9.2"
 
 LIBGDSYNC_PATH="$PREFIX_LIBS/libgdsync"
 LIBMP_PATH="$PREFIX_LIBS/libmp"
