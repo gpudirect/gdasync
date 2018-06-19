@@ -12,15 +12,12 @@ For system requirements please refer to:
 
 ### Build
 
-Inside `gdasync` directory type:
-
+In order to fetch the most updated version of all submodules:
 ```
 git submodule init
 git submodule update --remote --merge 
 ```
-To fetch the most updated version of all submodules.
-
-At anytime, you can use `Scripts/update_libs.sh` to pull from `master` branch the latest version of `Libraries/*`
+At anytime, you can use `Scripts/update_libs.sh` to pull the latest version of `Libraries/*` from their `master` branch.
 
 In file `Scripts/utils/header.sh` configure the following variables:
 
@@ -30,11 +27,11 @@ MPI_PATH="/path/to/mpi"
 CUDA_PATH="/path/to/cuda"
 ```
 
-To build libraries, in `Scripts` directory type `./build_libs.sh`. This script stores \*.so and \*.a files in `$PREFIX/lib` and headers in `$PREFIX/include`. Finally, GDAsync binaries (examples and benchmarks) are stored in `$PREFIX/bin`<br/>
+To build libraries, in `Scripts` directory type `./build_libs.sh`. This script stores `\*.so` and `\*.a` files in `$PREFIX/lib`, headers in `$PREFIX/include` and binaries in `$PREFIX/bin`<br/>
 
-To build applications, in `Scripts` directory type `./build_apps.sh`.<br/>
+To build applications (`gdasync/Apps`), in `Scripts` directory type `./build_apps.sh`.<br/>
 
-To create an archive with all GDAsync libraries and headers, in `Scripts` directory type `./compress.sh`.<br/>
+To create an archive with all GDAsync libraries and headers, in `Scripts` directory use the `compress.sh` script.<br/>
 An example of archive is `gdasync.tar.gz` in the main directory which has been build with:
 - OpenMPI 3.0.0
 - MLNX_OFED_LINUX-4.3-1.0.1.0
@@ -44,19 +41,19 @@ An example of archive is `gdasync.tar.gz` in the main directory which has been b
 ### Execute
 
 In order to execute apps, benchmarks and tests you need to
-* add in your `LD_LIBRARY_PATH` the your GDAsync libraries directory. For example:
+* add in your `LD_LIBRARY_PATH` the GDAsync libraries directory. For example:
 ```
 export LD_LIBRARY_PATH=$HOME/gdasync/Libraries/lib${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 ```
-* create the `hostfile` in `Scripts` directory
+* create `Scripts/hostfile`
 
 We provide two scripts:
 - `run_libgdsync.sh` runs all LibGDSync binaries in `gdasync/Libraries/bin`
 - `run_libmp.sh` runs all LibMP binaries in `gdasync/Libraries/bin`
 
 These scripts use:
-- `run_bin.sh` useful to run a GPUDirect Async binary setting all possible the environment variables
-- `mapper.sh` used by `run_bin.sh` to map, according to the topology of the system, the correct GPU and HCA to each process. We already provide some useful topology for DGX and P9 systems. **You need to add/modify your topology here according to your system.**
+- `run_bin.sh` useful to run an executable setting all possible the GDAsync environment variables
+- `mapper.sh` used by `run_bin.sh` to map, according to the topology of the system, the correct GPU, HCA and CPU to each process. We already provide some useful topology for DGX and P9 systems. **You need to add/change your topology here according to your system.**
 
 ## Acknowledging GPUDirect Async
 
