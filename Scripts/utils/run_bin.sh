@@ -27,10 +27,10 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-source header.sh
+source utils/header.sh
 
 [[ ! -e hostfile ]]	&& { echo "ERROR: hostfile missing"; exit 1; }
-[[ ! -e mapper.sh ]]    && { echo "ERROR: mapper.sh missing"; exit 1; }
+[[ ! -e utils/mapper.sh ]]    && { echo "ERROR: utils/mapper.sh missing"; exit 1; }
 
 if [[ $# -lt 2 ]]; then
     echo "Usage: <num procs> <exec path> <params>"
@@ -62,6 +62,8 @@ OMPI_params="$OMPI_params --mca btl_openib_warn_default_gid_prefix 0"
 
 export PATH=$PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH
+
+export SIZE
 
 #set -x
 $MPI_HOME/bin/mpirun -verbose  $OMPI_params   	\
@@ -104,7 +106,7 @@ $MPI_HOME/bin/mpirun -verbose  $OMPI_params   	\
         -x COMM_USE_ASYNC_KI=$COMM_KI 	\
         \
         -x LD_LIBRARY_PATH -x PATH 		\
-        --map-by node -np $NP -hostfile hostfile ./mapper.sh $EXEC $PARAMS
+        --map-by node -np $NP -hostfile hostfile ./utils/mapper.sh $EXEC $PARAMS
 
 
 # nvprof -o nvprof-kernel.%q{OMPI_COMM_WORLD_RANK}.nvprof
