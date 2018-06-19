@@ -28,11 +28,17 @@
 
 source utils/header.sh
 
-# === Building GDAsync applications
-echo "Building apps..."
+[[ ! -d $PREFIX_LIBS/gdrcopy ]]  && { echo "ERROR: $PREFIX_LIBS/gdrcopy does not exist"; exit 1; }
+echo "Updating $PREFIX_LIBS/gdrcopy..."
+cd $PREFIX_LIBS/gdrcopy && git pull origin master
+echo ""
 
-PREFIX_TMP=$PREFIX
-export PREFIX=$PREFIX_LIBS
+[[ ! -d $PREFIX_LIBS/libgdsync ]]  && { echo "ERROR: $PREFIX_LIBS/libgdsync does not exist"; exit 1; }
+echo "Updating $PREFIX_LIBS/libgdsync..."
+cd $PREFIX_LIBS/libgdsync && git pull origin master
+echo ""
 
-make -f utils/Makefile.apps clean all || exit 1
-
+[[ ! -d $PREFIX_LIBS/libmp ]]  && { echo "ERROR: $PREFIX_LIBS/libmp does not exist"; exit 1; }
+echo "Updating $PREFIX_LIBS/libmp..."
+cd $PREFIX_LIBS/libmp && git pull origin master
+echo ""

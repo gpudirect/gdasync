@@ -26,7 +26,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-source header.sh
+source utils/header.sh
 
 mkdir -p $PREFIX_LIBS/bin
 mkdir -p $PREFIX_LIBS/include
@@ -56,7 +56,7 @@ PREFIX_TMP=$PREFIX
 export PREFIX=$PREFIX_LIBS
 export GDRCOPY=$PREFIX_LIBS
 
-make -f Makefile.libs clean all || exit 1
+make -f utils/Makefile.libs clean all || exit 1
 #export PREFIX=$PREFIX_TMP
 
 echo ""

@@ -8,8 +8,8 @@
 # distribution of this software and related documentation without an express
 # license agreement from NVIDIA CORPORATION is strictly prohibited.
 
-source header.sh
-[[ ! -e run_bin.sh ]]	&& { echo "ERROR: run_bin.sh missing"; exit 1; }
+source utils/header.sh
+[[ ! -e utils/run_bin.sh ]]	&& { echo "ERROR: utils/run_bin.sh missing"; exit 1; }
 
 now=$(date +%F-%T)
 OUT_DIR=$PREFIX/outputs/out_libgdsync_${now}
