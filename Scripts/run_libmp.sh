@@ -108,6 +108,8 @@ efile=$OUT_DIR/mp_sendrecv_kernel_stream.stderr
 $RUN_BIN 2 0 0 0 $PREFIX_LIBS/bin/mp_sendrecv_kernel_stream 1>$ofile 2>$efile
 check_errors $efile $ofile $?
 
+:<<COMMENT
+
 printf "\n### LibMP-COMM ###\n"
 
 echo "Running comm_pingpong..."
@@ -128,11 +130,7 @@ efile=$OUT_DIR/comm_pingpong_gmem.stderr
 $RUN_BIN 2 1 1 0 $PREFIX_LIBS/bin/comm_pingpong -g 1>$ofile 2>$efile
 check_errors $efile $ofile $?
 
-echo "Running comm_pingpong, GMEM, I-ODP..."
-ofile=$OUT_DIR/comm_pingpong_gmem.stdout
-efile=$OUT_DIR/comm_pingpong_gmem.stderr
-$RUN_BIN 2 1 1 0 $PREFIX_LIBS/bin/comm_pingpong -g -o 1>$ofile 2>$efile
-check_errors $efile $ofile $?
+COMMENT
 
 echo ""
 echo "Outputs in $OUT_DIR"
