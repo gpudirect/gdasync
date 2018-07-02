@@ -37,75 +37,101 @@ OUT_DIR=$PREFIX/outputs/out_libmp_${now}
 mkdir -p $OUT_DIR
 
 #Examples
-echo "### LibMP examples ###"
+printf "\n### LibMP Examples ###\n"
 
 echo "Running mp_putget..."
 ofile=$OUT_DIR/mp_putget.stdout
 efile=$OUT_DIR/mp_putget.stderr
-$RUN_BIN 2 $PREFIX_LIBS/bin/mp_putget 1>$ofile 2>$efile
+$RUN_BIN 2 0 0 0 $PREFIX_LIBS/bin/mp_putget 1>$ofile 2>$efile
 check_errors $efile $ofile $?
 
 echo "Running mp_sendrecv..."
 ofile=$OUT_DIR/mp_sendrecv.stdout
 efile=$OUT_DIR/mp_sendrecv.stderr
-$RUN_BIN 2 $PREFIX_LIBS/bin/mp_sendrecv 1>$ofile 2>$efile
+$RUN_BIN 2 0 0 0 $PREFIX_LIBS/bin/mp_sendrecv 1>$ofile 2>$efile
 check_errors $efile $ofile $?
 
 echo "Running mp_sendrecv_kernel..."
 ofile=$OUT_DIR/mp_sendrecv_kernel.stdout
 efile=$OUT_DIR/mp_sendrecv_kernel.stderr
-$RUN_BIN 2 $PREFIX_LIBS/bin/mp_sendrecv_kernel 1>$ofile 2>$efile
+$RUN_BIN 2 0 0 0 $PREFIX_LIBS/bin/mp_sendrecv_kernel 1>$ofile 2>$efile
 check_errors $efile $ofile $?
 
 echo "Running mp_sendrecv_stream..."
 ofile=$OUT_DIR/mp_sendrecv_stream.stdout
 efile=$OUT_DIR/mp_sendrecv_stream.stderr
-$RUN_BIN 2 $PREFIX_LIBS/bin/mp_sendrecv_stream 1>$ofile 2>$efile
+$RUN_BIN 2 0 0 0 $PREFIX_LIBS/bin/mp_sendrecv_stream 1>$ofile 2>$efile
 check_errors $efile $ofile $?
 
 #Benchmarks
-echo "### LibMP benchmarks ###"
+printf "\n### LibMP Benchmarks ###\n"
 
 echo "Running mp_pingpong_all..."
 ofile=$OUT_DIR/mp_pingpong_all.stdout
 efile=$OUT_DIR/mp_pingpong_all.stderr
-$RUN_BIN 2 $PREFIX_LIBS/bin/mp_pingpong_all 1>$ofile 2>$efile
+$RUN_BIN 2 0 0 0 $PREFIX_LIBS/bin/mp_pingpong_all 1>$ofile 2>$efile
 check_errors $efile $ofile $?
 
 echo "Running mp_pingpong_kernel..."
 ofile=$OUT_DIR/mp_pingpong_kernel.stdout
 efile=$OUT_DIR/mp_pingpong_kernel.stderr
-$RUN_BIN 2 $PREFIX_LIBS/bin/mp_pingpong_kernel 1>$ofile 2>$efile
+$RUN_BIN 2 0 0 0 $PREFIX_LIBS/bin/mp_pingpong_kernel 1>$ofile 2>$efile
 check_errors $efile $ofile $?
 
 echo "Running mp_pingpong_kernel_stream..."
 ofile=$OUT_DIR/mp_pingpong_kernel_stream.stdout
 efile=$OUT_DIR/mp_pingpong_kernel_stream.stderr
-$RUN_BIN 2 $PREFIX_LIBS/bin/mp_pingpong_kernel_stream 1>$ofile 2>$efile
+$RUN_BIN 2 0 0 0 $PREFIX_LIBS/bin/mp_pingpong_kernel_stream 1>$ofile 2>$efile
 check_errors $efile $ofile $?
 
 echo "Running mp_pingpong_kernel_stream_latency..."
 ofile=$OUT_DIR/mp_pingpong_kernel_stream_latency.stdout
 efile=$OUT_DIR/mp_pingpong_kernel_stream_latency.stderr
-$RUN_BIN 2 $PREFIX_LIBS/bin/mp_pingpong_kernel_stream_latency 1>$ofile 2>$efile
+$RUN_BIN 2 0 0 0 $PREFIX_LIBS/bin/mp_pingpong_kernel_stream_latency 1>$ofile 2>$efile
 check_errors $efile $ofile $?
 
 echo "Running mp_pingpong_kernel_stream_latency_mpi..."
 ofile=$OUT_DIR/mp_pingpong_kernel_stream_latency_mpi.stdout
 efile=$OUT_DIR/mp_pingpong_kernel_stream_latency_mpi.stderr
-$RUN_BIN 2 $PREFIX_LIBS/bin/mp_pingpong_kernel_stream_latency_mpi 1>$ofile 2>$efile
+$RUN_BIN 2 0 0 0 $PREFIX_LIBS/bin/mp_pingpong_kernel_stream_latency_mpi 1>$ofile 2>$efile
 check_errors $efile $ofile $?
 
 echo "Running mp_producer_consumer_kernel_stream..."
 ofile=$OUT_DIR/mp_producer_consumer_kernel_stream.stdout
 efile=$OUT_DIR/mp_producer_consumer_kernel_stream.stderr
-$RUN_BIN 2 $PREFIX_LIBS/bin/mp_producer_consumer_kernel_stream 1>$ofile 2>$efile
+$RUN_BIN 2 0 0 0 $PREFIX_LIBS/bin/mp_producer_consumer_kernel_stream 1>$ofile 2>$efile
 check_errors $efile $ofile $?
 
 echo "Running mp_sendrecv_kernel_stream..."
 ofile=$OUT_DIR/mp_sendrecv_kernel_stream.stdout
 efile=$OUT_DIR/mp_sendrecv_kernel_stream.stderr
-$RUN_BIN 2 $PREFIX_LIBS/bin/mp_sendrecv_kernel_stream 1>$ofile 2>$efile
+$RUN_BIN 2 0 0 0 $PREFIX_LIBS/bin/mp_sendrecv_kernel_stream 1>$ofile 2>$efile
+check_errors $efile $ofile $?
+
+printf "\n### LibMP-COMM ###\n"
+
+echo "Running comm_pingpong..."
+ofile=$OUT_DIR/comm_pingpong.stdout
+efile=$OUT_DIR/comm_pingpong.stderr
+$RUN_BIN 2 1 1 0 $PREFIX_LIBS/bin/comm_pingpong 1>$ofile 2>$efile
+check_errors $efile $ofile $?
+
+echo "Running comm_pingpong, I-ODP..."
+ofile=$OUT_DIR/comm_pingpong_iodp.stdout
+efile=$OUT_DIR/comm_pingpong_iodp.stderr
+$RUN_BIN 2 1 1 0 $PREFIX_LIBS/bin/comm_pingpong -o 1>$ofile 2>$efile
+check_errors $efile $ofile $?
+
+echo "Running comm_pingpong, GMEM..."
+ofile=$OUT_DIR/comm_pingpong_gmem.stdout
+efile=$OUT_DIR/comm_pingpong_gmem.stderr
+$RUN_BIN 2 1 1 0 $PREFIX_LIBS/bin/comm_pingpong -g 1>$ofile 2>$efile
+check_errors $efile $ofile $?
+
+echo "Running comm_pingpong, GMEM, I-ODP..."
+ofile=$OUT_DIR/comm_pingpong_gmem.stdout
+efile=$OUT_DIR/comm_pingpong_gmem.stderr
+$RUN_BIN 2 1 1 0 $PREFIX_LIBS/bin/comm_pingpong -g -o 1>$ofile 2>$efile
 check_errors $efile $ofile $?
 
 echo ""

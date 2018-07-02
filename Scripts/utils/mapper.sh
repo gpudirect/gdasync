@@ -64,6 +64,7 @@ case ${HOSTNAME} in
 		dlrank=$(($lrank * 2)) # 0,2,4,6
 		#CUDA_VISIBLE_DEVICES=$dlrank
 		USE_GPU=${dlrank}
+		COMM_USE_GPU_ID=${dlrank}
 		USE_CPU=${hlrank}
 		HCA=mlx5_${lrank}
 		MP_USE_IB_HCA=${HCA}
@@ -72,16 +73,17 @@ case ${HOSTNAME} in
 	;;
 
 	*pwr*)
-                if (( $lrank > 2 )); then echo "too many ranks"; exit; fi
-                hlrank=$(($lrank * 8)) # 0,8
-                dlrank=$(($lrank * 2)) # 0,2
-                #CUDA_VISIBLE_DEVICES=${dlrank}
+		if (( $lrank > 2 )); then echo "too many ranks"; exit; fi
+		hlrank=$(($lrank * 8)) # 0,8
+		dlrank=$(($lrank * 2)) # 0,2
+		#CUDA_VISIBLE_DEVICES=${dlrank}
 		USE_GPU=${dlrank}
-                USE_CPU=${hlrank}
-                HCA=mlx5_${dlrank}
-                MP_USE_IB_HCA=${HCA}
-                USE_HCA=${HCA}
-                OMPI_MCA_btl_openib_if_include=${HCA}
+		COMM_USE_GPU_ID=${dlrank}
+		USE_CPU=${hlrank}
+		HCA=mlx5_${dlrank}
+		MP_USE_IB_HCA=${HCA}
+		USE_HCA=${HCA}
+		OMPI_MCA_btl_openib_if_include=${HCA}
         ;;
 
 	*brdw0*) CUDA_VISIBLE_DEVICES=3; USE_CPU=0; MP_USE_IB_HCA=mlx5_0;;
@@ -136,6 +138,7 @@ export \
         COMM_USE_COMM 			\
         COMM_USE_ASYNC_SA 		\
         COMM_USE_ASYNC_KI 		\
+        COMM_USE_GPU_ID			\
         \
         LD_LIBRARY_PATH PATH
 

@@ -33,7 +33,7 @@ source utils/header.sh
 [[ ! -e utils/mapper.sh ]]    && { echo "ERROR: utils/mapper.sh missing"; exit 1; }
 
 if [[ $# -lt 2 ]]; then
-    echo "Usage: <num procs> <exec path> <params>"
+    echo "Usage: <num procs> <use comm> <use comm SA> <use comm KI> <exec path> <params>"
     exit 1
 fi
 
@@ -43,15 +43,16 @@ if [[ $NP -lt 1 ]]; then
     exit 1
 fi
 
-EXEC=$2
+COMM=$2
+COMM_SA=$3 #if 1, use SA Model
+COMM_KI=$4 #if 1, use KI Model
+
+EXEC=$5
 [[ ! -e $EXEC ]]    && { echo "ERROR: $EXEC not found"; exit 1; }
-shift 2
+shift 5
 PARAMS=$@
 
 #Other parameters
-COMM=0
-COMM_SA=0 #if 1, use SA Model
-COMM_KI=0 #if 1, use KI Model
 TIME=5
 SIZE=131072
 
@@ -85,25 +86,25 @@ $MPI_HOME/bin/mpirun -verbose  $OMPI_params   	\
         -x GDS_DISABLE_INLINECOPY=0        	\
         -x GDS_DISABLE_WEAK_CONSISTENCY=0  	\
         -x GDS_DISABLE_MEMBAR=0            	\
-        -x GDS_DISABLE_REMOTE_FLUSH=1       \
-		-x GDS_DISABLE_WAIT_NOR=1			\
-        -x GDS_ENABLE_WAIT_CHECKER=0        \
-        -x GDS_FLUSHER_TYPE=0 		 	  	\
+        -x GDS_DISABLE_REMOTE_FLUSH=1       	\
+	-x GDS_DISABLE_WAIT_NOR=1		\
+        -x GDS_ENABLE_WAIT_CHECKER=0        	\
+        -x GDS_FLUSHER_TYPE=0 		 	\
         \
         -x MLX5_FREEZE_ON_ERROR_CQE=0 		\
-        -x GPU_ENABLE_DEBUG=0 				\
+        -x GPU_ENABLE_DEBUG=0 			\
         -x GDRCOPY_ENABLE_LOGGING=0 		\
-        -x GDRCOPY_LOG_LEVEL=0 				\
+        -x GDRCOPY_LOG_LEVEL=0 			\
         \
-        -x USE_CALC_SIZE=0 				\
+        -x USE_CALC_SIZE=0 			\
         -x KERNEL_TIME=$TIME 			\
-        -x MAX_SIZE=$SIZE 				\
+        -x MAX_SIZE=$SIZE 			\
         -x USE_GPU_BUFFERS=0 			\
         -x ENABLE_VALIDATION=0 			\
         \
         -x COMM_USE_COMM=$COMM 			\
-        -x COMM_USE_ASYNC_SA=$COMM_SA 	\
-        -x COMM_USE_ASYNC_KI=$COMM_KI 	\
+        -x COMM_USE_ASYNC_SA=$COMM_SA 		\
+        -x COMM_USE_ASYNC_KI=$COMM_KI 		\
         \
         -x LD_LIBRARY_PATH -x PATH 		\
         --map-by node -np $NP -hostfile hostfile ./utils/mapper.sh $EXEC $PARAMS
