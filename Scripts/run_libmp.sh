@@ -63,6 +63,17 @@ efile=$OUT_DIR/mp_sendrecv_stream.stderr
 $RUN_BIN 2 0 0 0 $PREFIX_LIBS/bin/mp_sendrecv_stream 1>$ofile 2>$efile
 check_errors $efile $ofile $?
 
+#These tests work with libmp/expose_send_params branch only!
+:<<COMMENT_EXPOSE_SEND_PARAMS
+
+echo "Running mp_sendrecv_stream_exp..."
+ofile=$OUT_DIR/mp_sendrecv_stream_exp.stdout
+efile=$OUT_DIR/mp_sendrecv_stream_exp.stderr
+$RUN_BIN 2 0 0 0 $PREFIX_LIBS/bin/mp_sendrecv_stream_exp 1>$ofile 2>$efile
+check_errors $efile $ofile $?
+
+COMMENT_EXPOSE_SEND_PARAMS
+
 #Benchmarks
 printf "\n### LibMP Benchmarks ###\n"
 
