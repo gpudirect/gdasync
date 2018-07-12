@@ -158,7 +158,26 @@ ofile=$OUT_DIR/gds_kernel_latency_peersync_descs_gmem.stdout
 efile=$OUT_DIR/gds_kernel_latency_peersync_descs_gmem.stderr
 $RUN_BIN 2 0 0 0 $PREFIX_LIBS/bin/gds_kernel_latency -U -E 1>$ofile 2>$efile
 check_errors $efile $ofile $?
+
+#These tests work with libgdsync/expose_send_params branch only!
+:<<COMMENT_EXPOSE_SEND_PARAMS
+
+echo "Running gds_kernel_latency, peersync, descriptors, RC"
+ofile=$OUT_DIR/gds_kernel_latency_info_rc.stdout
+efile=$OUT_DIR/gds_kernel_latency_info_rc.stderr
+$RUN_BIN 2 0 0 0 $PREFIX_LIBS/bin/gds_kernel_latency -U -I -k 2 1>$ofile 2>$efile
+check_errors $efile $ofile $?
+
+echo "Running gds_kernel_latency, peersync, descriptors, GMEM buffers, RC"
+ofile=$OUT_DIR/gds_kernel_latency_info_rc.stdout
+efile=$OUT_DIR/gds_kernel_latency_info_rc.stderr
+$RUN_BIN 2 0 0 0 $PREFIX_LIBS/bin/gds_kernel_latency -U -I -k 2 -E 1>$ofile 2>$efile
+check_errors $efile $ofile $?
+
+COMMENT_EXPOSE_SEND_PARAMS
+
 # -------------
+
 echo "Running gds_kernel_latency !peersync"
 ofile=$OUT_DIR/gds_kernel_latency_no_peersync.stdout
 efile=$OUT_DIR/gds_kernel_latency_no_peersync.stderr
@@ -170,6 +189,23 @@ ofile=$OUT_DIR/gds_kernel_latency_no_peersync_gmem.stdout
 efile=$OUT_DIR/gds_kernel_latency_no_peersync_gmem.stderr
 $RUN_BIN 2 0 0 0 $PREFIX_LIBS/bin/gds_kernel_latency -P -U -E 1>$ofile 2>$efile
 check_errors $efile $ofile $?
+
+#These tests work with libgdsync/expose_send_params branch only!
+:<<COMMENT_EXPOSE_SEND_PARAMS
+
+echo "Running gds_kernel_latency, !peersync, descriptors, RC"
+ofile=$OUT_DIR/gds_kernel_latency_info_rc.stdout
+efile=$OUT_DIR/gds_kernel_latency_info_rc.stderr
+$RUN_BIN 2 0 0 0 $PREFIX_LIBS/bin/gds_kernel_latency -U -I -k 2 -P 1>$ofile 2>$efile
+check_errors $efile $ofile $?
+
+echo "Running gds_kernel_latency, !peersync, descriptors, GMEM buffers, RC"
+ofile=$OUT_DIR/gds_kernel_latency_info_rc.stdout
+efile=$OUT_DIR/gds_kernel_latency_info_rc.stderr
+$RUN_BIN 2 0 0 0 $PREFIX_LIBS/bin/gds_kernel_latency -U -I -k 2 -E -P 1>$ofile 2>$efile
+check_errors $efile $ofile $?
+
+COMMENT_EXPOSE_SEND_PARAMS
 
 # ============ gds_poll_lat ============
 echo "Running gds_poll_lat"
