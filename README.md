@@ -61,4 +61,7 @@ If you find this software useful in your work, please cite:
 
 ["GPUDirect Async: exploring GPU synchronous communication techniques for InfiniBand clusters"](https://www.sciencedirect.com/science/article/pii/S0743731517303386), E. Agostini, D. Rossetti, S. Potluri. Journal of Parallel and Distributed Computing, Vol. 114, Pages 28-45, April 2018
 
+["MPI-GDS: High Performance MPI Designs with GPUDirect-aSync for CPU-GPU Control Flow Decoupling"](https://www.computer.org/csdl/proceedings/icpp/2017/1042/00/1042a151-abs.html), A. Venkatesh, C. Chu, K. Hamidouche, S. Potluri, Davide Rossetti, and D. K. Panda. Proceedings of the 46th International Conference on Parallel Processing, Aug 2017, Pages 151-160
+
+
 ["Offloading communication control logic in GPU accelerated applications"](http://ieeexplore.ieee.org/document/7973709), E. Agostini, D. Rossetti, S. Potluri. Proceedings of the 17th IEEE/ACM International Symposium on Cluster, Cloud and Grid Computing (CCGrid’ 17), IEEE Conference Publications, Pages 248-257, Nov 2016
