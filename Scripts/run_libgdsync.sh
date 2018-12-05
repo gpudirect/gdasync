@@ -169,8 +169,8 @@ $RUN_BIN 2 0 0 0 $PREFIX_LIBS/bin/gds_kernel_latency -U -I -k 2 1>$ofile 2>$efil
 check_errors $efile $ofile $?
 
 echo "Running gds_kernel_latency, peersync, descriptors, GMEM buffers, RC"
-ofile=$OUT_DIR/gds_kernel_latency_info_rc.stdout
-efile=$OUT_DIR/gds_kernel_latency_info_rc.stderr
+ofile=$OUT_DIR/gds_kernel_latency_info_gmem_rc.stdout
+efile=$OUT_DIR/gds_kernel_latency_info_gmem_rc.stderr
 $RUN_BIN 2 0 0 0 $PREFIX_LIBS/bin/gds_kernel_latency -U -I -k 2 -E 1>$ofile 2>$efile
 check_errors $efile $ofile $?
 
